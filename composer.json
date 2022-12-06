@@ -1,0 +1,24 @@
+{
+    "name": "thomas/thestore",
+    "description": "thestore ecommerce",
+    "require": {
+        "slim/slim": "^4.11",
+        "mongodb/mongodb": "^1.13",
+        "php-di/php-di": "^6.4",
+        "slim/psr7": "^1.6"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Thomas\\Thestore\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Thomas Moraes",
+            "email": "tho.vini7@gmail.com"
+        }
+    ]
+}
