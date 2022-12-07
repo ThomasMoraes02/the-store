@@ -1,10 +1,9 @@
 <?php
 
-use Slim\Psr7\Request;
-use Slim\Psr7\Response;
 use Slim\Factory\AppFactory;
 use Slim\Routing\RouteCollectorProxy;
 use TheStore\Application\Factories\Product\MakeLoadProductsController;
+use TheStore\Application\Factories\Product\MakeCreateProductController;
 
 require_once("vendor/autoload.php");
 
@@ -17,6 +16,7 @@ $app = AppFactory::create();
 $app->group("/products", function(RouteCollectorProxy $group) {
     $group->get("", new MakeLoadProductsController($this));
     $group->get("/{id}", new MakeLoadProductsController($this));
+    $group->post("", new MakeCreateProductController($this));
 });
 
 $app->run();

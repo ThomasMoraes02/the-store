@@ -34,7 +34,7 @@ class LoadProduct implements UseCase
 
         $products = $this->repository->findAll();
 
-        if(empty($product)) {
+        if(empty($products)) {
             return ['Products not found'];
         }
         return $products;

@@ -30,7 +30,7 @@ class ProductRepositoryMongo implements ProductRepository
             "price" => $product->getPrice(),
             "description" => $product->getDescription(),
             "amount" => $product->getAmount(),
-            "category" => $product->getCategory()
+            "category" => strval($product->getCategory())
         ];
 
         $this->mongo->insertOne($document);
