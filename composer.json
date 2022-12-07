@@ -16,7 +16,7 @@
             "TheStore\\": "src/"
         },
         "files": [
-            "config/config.php"
+            "config/config.php","config/container.php"
         ]
     },
     "autoload-dev": {
@@ -24,7 +24,7 @@
             "TheStore\\Tests\\": "test/"
         },
         "files": [
-            "config/config.php"
+            "config/config.php","config/container.php"
         ]
     },
     "authors": [
