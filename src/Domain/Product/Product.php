@@ -78,7 +78,7 @@ class Product
      */ 
     public function setCategory($category)
     {
-        $this->category = $category;
+        $this->category = new Category($category);
 
         return $this;
     }
