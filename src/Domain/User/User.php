@@ -27,6 +27,11 @@ class User
         $this->encoder = $encoder;
     }
 
+    public static function create(string $name, string $cpf, string $email, array $phone, array $address, Encoder $encoder): User
+    {
+        return new User($name, new Cpf($cpf), new Email($email), new Phone($phone[0], $phone[1]), new Address($address[0], $address[1], $address[2], $address[3]), $encoder);
+    }
+
     /**
      * Get the value of name
      */ 
@@ -102,7 +107,7 @@ class User
      */ 
     public function setEmail($email)
     {
-        $this->email = $email;
+        $this->email = new Email($email);
 
         return $this;
     }
