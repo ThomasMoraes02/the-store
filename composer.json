@@ -12,7 +12,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Thomas\\Thestore\\": "src/"
+            "TheStore\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "TheStore\\Tests\\": "test/"
         }
     },
     "authors": [
