@@ -1,5 +1,5 @@
 <?php 
-namespace TheStore\Tests\Domain\Infraestructure\User;
+namespace TheStore\Tests\Infraestructure\User;
 
 use PHPUnit\Framework\TestCase;
 use TheStore\Infraestructure\User\EncoderArgonII;

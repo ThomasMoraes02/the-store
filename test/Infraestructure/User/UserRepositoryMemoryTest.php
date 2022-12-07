@@ -1,12 +1,12 @@
 <?php 
-namespace TheStore\Tests\Domain\Infraestructure\User;
+namespace TheStore\Tests\Infraestructure\User;
 
+use TheStore\Domain\User\User;
 use PHPUnit\Framework\TestCase;
 use TheStore\Domain\User\Email;
-use TheStore\Domain\User\User;
 use TheStore\Domain\User\UserRepository;
-use TheStore\Infraestructure\Exceptions\UserNotFound;
 use TheStore\Infraestructure\User\EncoderArgonII;
+use TheStore\Infraestructure\Exceptions\UserNotFound;
 use TheStore\Infraestructure\User\UserRepositoryMemory;
 
 class UserRepositoryMemoryTest extends TestCase
