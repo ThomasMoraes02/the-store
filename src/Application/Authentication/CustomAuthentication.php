@@ -28,7 +28,7 @@ class CustomAuthentication implements AuthenticationService
             throw new InvalidPassword();
         }
 
-        $accessToken = $this->tokenManager->signIn(["email" => strval($user->getEmail()), "name" => $user->getName()]);
+        $accessToken = $this->tokenManager->encode(["email" => strval($user->getEmail()), "name" => $user->getName()]);
 
         return [
             "accessToken" => $accessToken,
