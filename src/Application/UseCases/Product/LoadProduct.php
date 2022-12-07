@@ -15,7 +15,7 @@ class LoadProduct implements UseCase
 
     public function perform(array $request)
     {
-        if($request['id'] == '') {
+        if(isset($request['id'])) {
             $product = $this->repository->findById(intval($request['id']));
 
             if(empty($product)) {

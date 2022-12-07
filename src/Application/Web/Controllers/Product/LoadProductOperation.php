@@ -10,6 +10,8 @@ class LoadProductOperation implements ControllerOperation
 {
     use HttpHelper;
 
+    public array $requiredParams = [];
+
     private UseCase $useCase;
 
     public function __construct(UseCase $useCase)
