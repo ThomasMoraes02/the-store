@@ -16,6 +16,7 @@ $app = AppFactory::create();
 
 $app->group("/products", function(RouteCollectorProxy $group) {
     $group->get("", new MakeLoadProductsController($this));
+    $group->get("/{id}", new MakeLoadProductsController($this));
 });
 
 $app->run();

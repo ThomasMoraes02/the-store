@@ -22,6 +22,7 @@ class MakeLoadProductsController
 
     public function __invoke(Request $request, Response $response, array $args)
     {
+        $payload['id'] = $args['id'] ?? '';
         $payload = $request->getQueryParams();
         $responseController = $this->controller->handle($payload);
 
