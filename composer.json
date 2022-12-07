@@ -14,12 +14,18 @@
     "autoload": {
         "psr-4": {
             "TheStore\\": "src/"
-        }
+        },
+        "files": [
+            "config/config.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
             "TheStore\\Tests\\": "test/"
-        }
+        },
+        "files": [
+            "config/config.php"
+        ]
     },
     "authors": [
         {

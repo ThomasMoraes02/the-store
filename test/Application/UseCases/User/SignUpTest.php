@@ -47,9 +47,6 @@ class SignUpTest extends TestCase
         $this->assertEquals("teste@gmail.com", $response['email']);
         
         $allUsers = $this->userRepository->findAll();
-
-        var_dump($allUsers[1]);
-
         $this->assertEquals(2, count($allUsers));
     }
 }

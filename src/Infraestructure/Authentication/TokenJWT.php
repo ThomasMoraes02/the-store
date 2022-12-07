@@ -8,36 +8,28 @@ use TheStore\Application\Authentication\TokenManager;
 
 class TokenJWT implements TokenManager
 {
-    private string $key;
-
-    private int $expirationTime;
-
-    public function __construct()
-    {
-        $this->key = "this-is-my-key-test";
-        $this->expirationTime = time() + 60 * 60 * 24 * 5;
-    }
-
     public function encode($payload): string
     {
+        $expires = time() + 60 * 60 * 24 * JWT_EXPIRATION_TOKEN;
+
         $payloadJwt = [
-            "iss" => $this->key,
-            "exp" => $this->expirationTime,
+            "iss" => JWT_SECRET_TOKEN,
+            "exp" => $expires,
             "name" => $payload['name'],
             "role" => "user"
         ];
 
-        return JWT::encode($payloadJwt, $this->key, 'HS256');
+        return JWT::encode($payloadJwt, JWT_SECRET_TOKEN, 'HS256');
     }
 
     public function decode(string $token): bool
     {
-        $decode = JWT::decode($token, new Key($this->key, 'HS256'));
+        $decode = JWT::decode($token, new Key(JWT_SECRET_TOKEN, 'HS256'));
 
         $expires = new DateTime(date('Y-m-d',$decode->exp));
         $interval = $expires->diff(new DateTime());
 
-        if($interval->days > 5) {
+        if($interval->days > JWT_EXPIRATION_TOKEN) {
             return false;
         }
         return true;
