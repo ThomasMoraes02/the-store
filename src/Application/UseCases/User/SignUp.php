@@ -1,14 +1,15 @@
 <?php 
 namespace TheStore\Application\UseCases\User;
 
+use TheStore\Domain\User\User;
+use TheStore\Domain\User\Email;
 use TheStore\Domain\User\Encoder;
 use TheStore\Domain\User\UserRepository;
 use TheStore\Application\UseCases\UseCase;
-use TheStore\Application\Authentication\AuthenticationService;
-use TheStore\Application\Exceptions\InvalidPassword;
 use TheStore\Domain\Exceptions\EmailException;
-use TheStore\Domain\User\Email;
-use TheStore\Domain\User\User;
+use TheStore\Application\Exceptions\InvalidPassword;
+use TheStore\Infraestructure\Exceptions\UserNotFound;
+use TheStore\Application\Authentication\AuthenticationService;
 
 class SignUp implements UseCase
 {
@@ -32,7 +33,7 @@ class SignUp implements UseCase
             if($compare == false) {
                 throw new InvalidPassword;
             }
-        } catch(EmailException | InvalidPassword $e) {
+        } catch(UserNotFound | InvalidPassword $e) {
             $user = User::create($request['name'], $request['cpf'], $request['email'], $request['phone'], $request['address'], new $this->encoder);
             $user->setPassword($request['password']);
             $this->userRepository->addUser($user);
@@ -41,7 +42,7 @@ class SignUp implements UseCase
         $response = $this->authentication->auth([
             "name" => $user->getName(),
             "email" => $user->getEmail(),
-            "password" => $user->getPassword()
+            "password" => $request['password']
         ]);
 
         return $response;
