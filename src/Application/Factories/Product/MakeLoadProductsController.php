@@ -21,8 +21,11 @@ class MakeLoadProductsController
 
     public function __invoke(Request $request, Response $response, array $args)
     {
-        $payload['id'] = $args['id'] ?? '';
         $payload = $request->getQueryParams();
+        $payload['id'] = $args['id'] ?? 0;
+        $payload['page'] = $payload['page'] ?? 0;
+        $payload['limit'] = $payload['limit'] ?? 0;
+
         $responseController = $this->controller->handle($payload);
 
         $response->getBody()->write(json_encode($responseController['body']));

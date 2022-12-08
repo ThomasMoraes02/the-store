@@ -65,9 +65,17 @@ class ProductRepositoryMongo implements ProductRepository
         $this->mongo->deleteOne(["id" => $id]);
     }
 
-    public function findAll(): array
+    public function findAll(int $page = 0, int $limit = 0): array
     {
-        return $this->mongo->find()->toArray();
+        $skip = ($page - 1) * $limit;
+        $skip = ($skip < 0) ? 0 : $skip;
+
+        $options = [
+            'skip' => $skip,
+            'limit' => $limit
+        ];
+
+        return $this->mongo->find([],$options)->toArray();
     }
 
     /**

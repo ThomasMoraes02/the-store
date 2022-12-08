@@ -3,6 +3,7 @@ namespace TheStore\Application\UseCases\Product;
 
 use TheStore\Application\UseCases\UseCase;
 use TheStore\Domain\Product\ProductRepository;
+use TheStore\Infraestructure\Exceptions\ProductNotFound;
 
 class LoadProduct implements UseCase
 {
@@ -15,12 +16,10 @@ class LoadProduct implements UseCase
 
     public function perform(array $request)
     {
-        if(isset($request['id'])) {
+        if($request['id'] != '') {
             $product = $this->repository->findById(intval($request['id']));
 
-            if(empty($product)) {
-                return ['Product not found'];
-            }
+            $url = SERVER_PROTOCOL . SERVER_NAME . ":" . SERVER_PORT . "/products/" . $request['id'];
 
             return [
                 "id" => $request['id'],
@@ -28,15 +27,31 @@ class LoadProduct implements UseCase
                 "price" => $product->getPrice(),
                 "description" => $product->getDescription(),
                 "amount" => $product->getAmount(),
-                "category" => $product->getCategory()
+                "category" => strval($product->getCategory()),
+                "_links" => [
+                    "product" => [
+                        "href" => $url,
+                        "title" => $product->getTitle()
+                    ]
+                ]
             ];
         }
 
-        $products = $this->repository->findAll();
+        $products = $this->repository->findAll($request['page'], $request['limit']);
 
         if(empty($products)) {
-            return ['Products not found'];
+            throw new ProductNotFound;
         }
+
+        foreach($products as $key => $product) {
+            $product["_links"] = [
+                "product" => [
+                    "href" => SERVER_PROTOCOL . SERVER_NAME . ":" . SERVER_PORT . "/products/" . $product['_id'],
+                    "title" => $product['title']
+                ]
+            ];
+        }
+
         return $products;
     }
 }

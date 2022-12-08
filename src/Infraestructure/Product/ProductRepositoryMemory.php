@@ -51,7 +51,7 @@ class ProductRepositoryMemory implements ProductRepository
         unset($this->products[$id]);
     }
 
-    public function findAll(): array
+    public function findAll(int $page = 0, int $limit = 0): array
     {
         return $this->products;
     }

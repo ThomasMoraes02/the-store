@@ -13,5 +13,5 @@ interface ProductRepository
 
     public function findByCategory(Category $category): array;
 
-    public function findAll(): array;
+    public function findAll(int $page = 0, int $limit = 0): array;
 }
