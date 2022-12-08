@@ -20,7 +20,7 @@ class SignInTest extends TestCase
     protected function setUp(): void
     {
         $this->encoder = new EncoderArgonII;
-        $this->user = User::create("Thomas", "123.456.789-09", "thomas@gmail.com", ["11", "965813697"], ["08753650", "city", "street", "1"], $this->encoder);
+        $this->user = User::create("Thomas", "123.456.789-09", "thomas@gmail.com", ["ddd" => "11","number"=>"965813697"], ["zipcode" => "08753650","city" => "city","street" => "street","number" => "1"], $this->encoder);
         $this->user->setPassword("123456");
 
         $this->repository = new UserRepositoryMemory;

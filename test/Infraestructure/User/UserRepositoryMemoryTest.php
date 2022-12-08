@@ -16,7 +16,7 @@ class UserRepositoryMemoryTest extends TestCase
 
     protected function setUp(): void
     {
-        $user = User::create("Thomas Moraes", "123.456.789-09", "thomas@gmail.com", ["11", "965873259"], ["0598234", "city", "street", "11"], new EncoderArgonII);
+        $user = User::create("Thomas Moraes", "123.456.789-09", "thomas@gmail.com", ["ddd" => "11","number" => "965873259"], ["zipcode" => "0598234","city" => "city","street" => "street","number" => "11"], new EncoderArgonII);
         $user->setPassword("123456");
         $this->user = $user;
         
@@ -44,7 +44,7 @@ class UserRepositoryMemoryTest extends TestCase
     public function test_delete_user()
     {
         $this->expectException(UserNotFound::class);
-        $user = User::create("Thomas Moraes 2", "123.456.789-09", "thomas2@gmail.com", ["11", "960073259"], ["0598234", "city", "street", "11"], new EncoderArgonII);
+        $user = User::create("Thomas", "123.456.789-09", "thomas@gmail.com", ["ddd" => "11","number"=>"965813697"], ["zipcode" => "08753650","city" => "city","street" => "street","number" => "1"], new EncoderArgonII);
         $user->setPassword("654321");
 
         $this->repository->addUser($user);

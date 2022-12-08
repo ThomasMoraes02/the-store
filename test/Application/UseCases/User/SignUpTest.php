@@ -23,7 +23,7 @@ class SignUpTest extends TestCase
         $this->encoder = new EncoderArgonII;
         $this->tokenManager = new TokenJWT;
 
-        $user = User::create("Thomas", "123.456.789-09", "thomas@gmail.com", ["11", "965813697"], ["08753650", "city", "street", "1"], $this->encoder);
+        $user = User::create("Thomas", "123.456.789-09", "thomas@gmail.com", ["ddd" => "11","number"=>"965813697"], ["zipcode" => "08753650","city" => "city","street" => "street","number" => "1"], $this->encoder);
         $user->setPassword("123456");
 
         $this->userRepository = new UserRepositoryMemory;
@@ -38,8 +38,8 @@ class SignUpTest extends TestCase
             "name" => "teste",
             "cpf" => "123.456.789-09",
             "email" => "teste@gmail.com",
-            "phone" => ["11", "987456321"],
-            "address" => ["06548259", "citys", "streets", "36"],
+            "phone" => ["ddd" => "11", "number" => "987456321"],
+            "address" => ["zipcode" => "06548259","city" => "citys","street" => "streets","number" => "36"],
             "password" => "987654"
         ];
 

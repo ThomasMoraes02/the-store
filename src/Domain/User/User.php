@@ -29,7 +29,7 @@ class User
 
     public static function create(string $name, string $cpf, string $email, array $phone, array $address, Encoder $encoder): User
     {
-        return new User($name, new Cpf($cpf), new Email($email), new Phone($phone[0], $phone[1]), new Address($address[0], $address[1], $address[2], $address[3]), $encoder);
+        return new User($name, new Cpf($cpf), new Email($email), new Phone($phone["ddd"], $phone["number"]), new Address($address["zipcode"], $address["city"], $address["street"], $address["number"]), $encoder);
     }
 
     /**
