@@ -8,10 +8,12 @@ define("DB_DRIVER", "mongodb");
 
 define("DB_DATABASE", "thestore");
 
-define("SERVER_PROTOCOL", $_SERVER['SERVER_NAME'] == "localhost" ? "http://" : "https://");
+if(!empty($_SERVER['SERVER_NAME'])) {
+    define("SERVER_PROTOCOL", $_SERVER['SERVER_NAME'] == "localhost" ? "http://" : "https://");
 
-define("SERVER_PORT", $_SERVER['SERVER_PORT']);
+    define("SERVER_PORT", $_SERVER['SERVER_PORT']);
 
-define("SERVER_NAME", $_SERVER['SERVER_NAME']);
+    define("SERVER_NAME", $_SERVER['SERVER_NAME']);
+}
 
 ini_set('display_errors', 1);

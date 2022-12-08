@@ -28,7 +28,7 @@ class LoadProductTest extends TestCase
 
         $response = $loadProduct->perform($request);
 
-        $this->assertEquals("Teste", $response['title']);
+        $this->assertEquals("Teste", $response[0]->getTitle());
     }
 
     public function test_load_all_products()
