@@ -3,7 +3,7 @@ namespace TheStore\Application\Web\Controllers\Product;
 
 use TheStore\Application\UseCases\UseCase;
 use TheStore\Application\Web\Controllers\ControllerOperation;
-use TheStore\Application\Web\HttpHelper;
+use TheStore\Application\Helpers\HttpHelper;
 use Throwable;
 
 class CreateProductOperation implements ControllerOperation

@@ -2,8 +2,8 @@
 namespace TheStore\Application\Web\Controllers\User;
 
 use Throwable;
-use TheStore\Application\Web\HttpHelper;
 use TheStore\Application\UseCases\UseCase;
+use TheStore\Application\Helpers\HttpHelper;
 use TheStore\Application\Web\Controllers\ControllerOperation;
 
 class SignInOperation implements ControllerOperation

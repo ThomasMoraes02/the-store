@@ -1,7 +1,7 @@
 <?php 
 namespace TheStore\Application\Web\Controllers\User;
 
-use TheStore\Application\Web\HttpHelper;
+use TheStore\Application\Helpers\HttpHelper;
 use TheStore\Application\UseCases\UseCase;
 use TheStore\Application\Web\Controllers\ControllerOperation;
 use Throwable;

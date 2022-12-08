@@ -11,7 +11,6 @@ require_once("vendor/autoload.php");
 
 $container = require __DIR__ . "../../config/container.php";
 
-
 AppFactory::setContainer($container);
 $app = AppFactory::create();
 

@@ -2,7 +2,7 @@
 namespace TheStore\Application\Web\Controllers\Product;
 
 use Throwable;
-use TheStore\Application\Web\HttpHelper;
+use TheStore\Application\Helpers\HttpHelper;
 use TheStore\Application\UseCases\UseCase;
 use TheStore\Application\Web\Controllers\ControllerOperation;
 

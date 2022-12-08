@@ -1,5 +1,5 @@
 <?php 
-namespace TheStore\Application\Web;
+namespace TheStore\Application\Helpers;
 
 trait HttpHelper
 {

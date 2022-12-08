@@ -2,7 +2,7 @@
 namespace TheStore\Application\Middleware;
 
 use TheStore\Application\Authentication\TokenManager;
-use TheStore\Application\Web\HttpHelper;
+use TheStore\Application\Helpers\HttpHelper;
 use Throwable;
 
 class Authentication implements Middleware
