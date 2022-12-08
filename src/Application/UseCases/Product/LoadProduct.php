@@ -2,6 +2,7 @@
 namespace TheStore\Application\UseCases\Product;
 
 use MongoDB\Model\BSONDocument;
+use TheStore\Application\Helpers\ProductHelper;
 use TheStore\Application\UseCases\UseCase;
 use TheStore\Domain\Product\Product;
 use TheStore\Domain\Product\ProductRepository;
@@ -9,6 +10,8 @@ use TheStore\Infraestructure\Exceptions\ProductNotFound;
 
 class LoadProduct implements UseCase
 {
+    use ProductHelper;
+
     private ProductRepository $repository;
 
     public function __construct(ProductRepository $repository)
@@ -20,23 +23,7 @@ class LoadProduct implements UseCase
     {
         if($request['id'] != '') {
             $product = $this->repository->findById(intval($request['id']));
-
-            $url = SERVER_PROTOCOL . SERVER_NAME . ":" . SERVER_PORT . "/products/" . $request['id'];
-
-            return [
-                "id" => $request['id'],
-                "title" => $product->getTitle(),
-                "price" => $product->getPrice(),
-                "description" => $product->getDescription(),
-                "amount" => $product->getAmount(),
-                "category" => strval($product->getCategory()),
-                "_links" => [
-                    "product" => [
-                        "href" => $url,
-                        "title" => $product->getTitle()
-                    ]
-                ]
-            ];
+            return $this->mapper($product, $request['id']);
         }
 
         $page = $request['page'] ?? 0;
@@ -48,21 +35,6 @@ class LoadProduct implements UseCase
             throw new ProductNotFound;
         }
 
-        return $this->mapperArray($products);
-    }
-
-    private function mapperArray(array $products): array
-    {
-        foreach($products as $product) {
-            if(is_array($product) || $product instanceof BSONDocument) {
-                $product["_links"] = [
-                    "product" => [
-                        "href" => SERVER_PROTOCOL . SERVER_NAME . ":" . SERVER_PORT . "/products/" . $product['_id'],
-                        "title" => $product['title']
-                    ]
-                ];
-            }
-        }
-        return $products;
+        return $this->mapper($products);
     }
 }

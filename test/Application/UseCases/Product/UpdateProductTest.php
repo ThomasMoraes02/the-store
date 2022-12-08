@@ -30,7 +30,7 @@ class UpdateProductTest extends TestCase
         ];
 
         $response = $updateProduct->perform($request);
-        $this->assertEquals("new title", $response->getTitle());
-        $this->assertEquals("new test category", $response->getCategory());
+        $this->assertEquals("new title", $response['title']);
+        $this->assertEquals("new test category", $response['category']);
     }
 }

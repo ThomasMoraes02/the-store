@@ -1,11 +1,14 @@
 <?php 
 namespace TheStore\Application\UseCases\Product;
 
+use TheStore\Application\Helpers\ProductHelper;
 use TheStore\Application\UseCases\UseCase;
 use TheStore\Domain\Product\ProductRepository;
 
 class UpdateProduct implements UseCase
 {
+    use ProductHelper;
+
     private ProductRepository $repository;
 
     public function __construct(ProductRepository $repository)
@@ -19,6 +22,7 @@ class UpdateProduct implements UseCase
         unset($request['id']);
         $this->repository->updateProduct(intval($id), $request);
 
-        return $this->repository->findById($id);
+        $product = $this->repository->findById($id);
+        return $this->mapper($product, $id);
     }
 }
