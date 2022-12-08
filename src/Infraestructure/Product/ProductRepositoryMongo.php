@@ -62,7 +62,7 @@ class ProductRepositoryMongo implements ProductRepository
 
     public function deleteProduct(int $id): void
     {
-        $this->mongo->deleteOne(["id" => $id]);
+        $this->mongo->deleteOne(["_id" => $id]);
     }
 
     public function findAll(int $page = 0, int $limit = 0): array
