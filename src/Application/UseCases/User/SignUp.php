@@ -6,7 +6,6 @@ use TheStore\Domain\User\Email;
 use TheStore\Domain\User\Encoder;
 use TheStore\Domain\User\UserRepository;
 use TheStore\Application\UseCases\UseCase;
-use TheStore\Domain\Exceptions\EmailException;
 use TheStore\Application\Exceptions\InvalidPassword;
 use TheStore\Infraestructure\Exceptions\UserNotFound;
 use TheStore\Application\Authentication\AuthenticationService;

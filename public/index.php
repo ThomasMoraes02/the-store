@@ -2,6 +2,7 @@
 
 use Slim\Factory\AppFactory;
 use Slim\Routing\RouteCollectorProxy;
+use TheStore\Application\Factories\User\MakeSignInController;
 use TheStore\Application\Factories\User\MakeSignUpController;
 use TheStore\Application\Factories\Product\MakeLoadProductsController;
 use TheStore\Application\Factories\Product\MakeCreateProductController;
@@ -16,6 +17,8 @@ AppFactory::setContainer($container);
 $app = AppFactory::create();
 
 $app->post("/signup", new MakeSignUpController($container));
+
+$app->post("/signin", new MakeSignInController($container));
 
 $app->group("/products", function(RouteCollectorProxy $group) {
     $group->get("", new MakeLoadProductsController($this));

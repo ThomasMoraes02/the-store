@@ -14,6 +14,11 @@ class SignInOperation implements ControllerOperation
     
     private UseCase $useCase;
 
+    public function __construct(UseCase $useCase)
+    {
+        $this->useCase = $useCase;
+    }
+
     public function execute(array $request)
     {
         try {
