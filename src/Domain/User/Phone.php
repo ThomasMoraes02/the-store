@@ -34,4 +34,14 @@ class Phone
     {
         return "({$this->ddd}) {$this->number}";
     }
+
+    public function getDdd()
+    {
+        return $this->ddd;
+    }
+
+    public function getNumber()
+    {
+        return $this->number;
+    }
 }

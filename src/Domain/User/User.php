@@ -65,9 +65,12 @@ class User
      *
      * @return  self
      */ 
-    public function setPassword($password)
+    public function setPassword($password, $hash = false)
     {
-        $this->password = $this->encoder->encode($password);
+        $this->password = $password;
+        if($hash == false) {
+            $this->password = $this->encoder->encode($password);
+        }
 
         return $this;
     }
